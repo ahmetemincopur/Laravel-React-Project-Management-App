@@ -97,6 +97,14 @@ export default function Index({ auth, projects, queryParams = null }) {
                                             >
                                                 Due Date
                                             </TableHeading>
+                                            <TableHeading
+                                                name="created_by"
+                                                sort_field={queryParams.sort_field}
+                                                sort_direction={queryParams.sort_direction}
+                                                sortChanged={sortChanged}
+                                            >
+                                                Created By
+                                            </TableHeading>
                                         </tr>
                                     </thead>
                                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:gray-700 dark:text-gray-400 border-b-2 border-b-gray-500">

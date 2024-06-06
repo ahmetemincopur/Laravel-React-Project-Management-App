@@ -62,6 +62,7 @@ export default function Index({ auth, tasks, queryParams = null }) {
                                                 ID
                                             </TableHeading>
                                             <th className="px-3 py-3">Image</th>
+                                            <th className="px-3 py-3">Project Name</th>
                                             <TableHeading
                                                 name="name"
                                                 sort_field={queryParams.sort_field}
@@ -96,6 +97,14 @@ export default function Index({ auth, tasks, queryParams = null }) {
                                                 sortChanged={sortChanged}
                                             >
                                                 Due Date
+                                            </TableHeading>
+                                            <TableHeading
+                                                name="created_by"
+                                                sort_field={queryParams.sort_field}
+                                                sort_direction={queryParams.sort_direction}
+                                                sortChanged={sortChanged}
+                                            >
+                                                Created By
                                             </TableHeading>
                                         </tr>
                                     </thead>
@@ -132,6 +141,7 @@ export default function Index({ auth, tasks, queryParams = null }) {
                                             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={task.id}>
                                                 <td className="px-3 py-3">{task.id}</td>
                                                 <td className="px-3 py-3"><img src={task.image_path} alt="" style={{ width: 60 }} /></td>
+                                                <td className="px-3 py-3">{task.project.name}</td>
                                                 <td className="px-3 py-3">{task.name}</td>
                                                 <td className="px-3 py-3">
                                                     <span className={"px-2 py-1 rounded text-white " + TASK_STATUS_CLASS_MAP[task.status]}>

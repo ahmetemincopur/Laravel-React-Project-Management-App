@@ -38,6 +38,13 @@ export default function Index({ auth, projects, queryParams = null }) {
         router.get(route("project.index", queryParams));
     };
 
+    const deleteProject = (project) => {
+        if (!window.confirm("Are you sure you want to delete the project?")) {
+            return;
+        }
+        router.delete(route("project.destroy", project.id));
+    };
+
     return (
         <AuthenticatedLayout
             auth={auth}
@@ -165,13 +172,16 @@ export default function Index({ auth, projects, queryParams = null }) {
                                                 <td className="px-3 py-3 text-nowrap">{project.created_at}</td>
                                                 <td className="px-3 py-3 text-nowrap">{project.due_date}</td>
                                                 <td className="px-3 py-3">{project.createdBy.name}</td>
-                                                <td className="px-3 py-3">
+                                                <td className="px-3 py-3 text-nowrap">
                                                     <Link href={route("project.edit", project.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1">
                                                         Edit
                                                     </Link>
-                                                    <Link href={route("project.destroy", project.id)} className="font-medium text-red-600 dark:text-red-500 hover:underline mx-1">
+                                                    <button
+                                                        onClick={(e) => deleteProject(project)}
+                                                        className="font-medium text-red-600 dark:text-red-500 hover:underline mx-1"
+                                                    >
                                                         Delete
-                                                    </Link>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))}
